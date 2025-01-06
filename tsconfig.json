@@ -1,9 +1,12 @@
 {
   "compilerOptions": {
-    "target": "es2020",
-    "module": "commonjs",
+    "module": "ESNext",
+    "target": "ES6",
     "strict": true,
-    "types": ["node", "mocha", "@wdio/globals/types"],
+    "types": [
+      "node",
+      "@wdio/globals/types", "@wdio/mocha-framework", 
+  ],
     "moduleResolution": "node",
     "esModuleInterop": true,
     "resolveJsonModule": true
