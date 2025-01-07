@@ -19,7 +19,7 @@ export const config: WebdriverIO.Config = {
     // Runner Configuration
     // ====================
     // WebdriverIO supports running e2e tests as well as unit and component tests.
-    runner: 'local',
+    // runner: 'local',
     tsConfigPath: './tsconfig.json',
     
     //
@@ -36,7 +36,7 @@ export const config: WebdriverIO.Config = {
     //
     // The path of the spec files will be resolved relative from the directory of
     // of the config file unless it's absolute.
-    //
+      
     specs: [
         './test/specs/**/*.ts'
     ],
@@ -49,16 +49,16 @@ export const config: WebdriverIO.Config = {
     // Capabilities
     // ============
 
+
     capabilities: [{
         'bstack:options': {
             deviceName: 'Samsung Galaxy S22 Ultra',
             platformVersion: '12.0',
             platformName: 'android',
         },
-        "appium:options": {
-            "automationName": "uiautomator2"
-      },
-    }],
+    
+    }
+],
     // Define your capabilities here. WebdriverIO can run multiple capabilities at the same
     // time. Depending on the number of capabilities, WebdriverIO launches several test
     // sessions. Within your capabilities you can overwrite the spec and exclude options in
@@ -96,10 +96,10 @@ export const config: WebdriverIO.Config = {
     // - @wdio/sumologic-reporter
     // - @wdio/cli, @wdio/config, @wdio/utils
     // Level of logging verbosity: trace | debug | info | warn | error | silent
-    // logLevels: {
-    //     webdriver: 'info',
-    //     '@wdio/appium-service': 'info'
-    // },
+    logLevels: {
+        webdriver: 'info',
+        '@wdio/appium-service': 'info'
+    },
     //
     // If you only want to run your tests until a specific amount of tests have failed use
     // bail (default is 0 - don't bail, run all tests).
@@ -134,7 +134,6 @@ export const config: WebdriverIO.Config = {
     // Make sure you have the wdio adapter package for the specific framework installed
     // before running any tests.
     framework: 'mocha',
-    
     //
     // The number of times to retry the entire specfile when it fails as a whole
     // specFileRetries: 1,
