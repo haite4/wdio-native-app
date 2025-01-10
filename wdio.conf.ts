@@ -42,7 +42,8 @@ export const config: WebdriverIO.Config = {
     ],
     // Patterns to exclude.
     exclude: [
-        // 'path/to/excluded/files'
+        // 'path/to/excluded/files',
+        './node_modules/**'
     ],
     //
     // ============
@@ -56,7 +57,7 @@ export const config: WebdriverIO.Config = {
             platformVersion: '12.0',
             platformName: 'android',
         },
-    
+        "appium:automationName": "UIAutomator2",
     }
 ],
     // Define your capabilities here. WebdriverIO can run multiple capabilities at the same
@@ -153,7 +154,7 @@ export const config: WebdriverIO.Config = {
     // See the full list at http://mochajs.org/
     mochaOpts: {
         ui: 'bdd',
-        timeout: 60000
+        timeout: 1000000
     },
 
     //

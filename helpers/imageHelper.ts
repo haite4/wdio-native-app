@@ -1,11 +1,7 @@
 import sharp from "sharp";
-import fs from "fs";
+import fs from "fs/promises";
 
-export async function resizeImage(
-    inputPath: string,
-    outputPath: string,
-    width: number,
-    height: number
+export async function resizeImage(inputPath: string, outputPath: string, width: number, height: number
   ) {
     try {
       await sharp(inputPath)
@@ -19,11 +15,22 @@ export async function resizeImage(
     }
   }
 
-
-  export async function deleteImages(paths: string[]){
-    paths.forEach((image) => {
-        fs.unlink(image, (err) => {
-            if(err) throw err;
-          })
-    })
-  }
+  export async function deleteImages(paths: string[]) {
+    if (paths.length > 0) {
+        for (const image of paths) {
+            try {
+                await fs.access(image);
+                await fs.unlink(image);
+                console.log(`File ${image} deleted.`);
+            } catch (err: any) {
+                if (err.code === 'ENOENT') {
+                    console.error(`File ${image} not exist!.`);
+                } else {
+                    throw err;
+                }
+            }
+        }
+    }
+}
+       
+   

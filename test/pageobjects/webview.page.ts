@@ -1,29 +1,37 @@
 import Page from "./base.page";
 
 class WebviewPage extends Page {
-    get robotImage(){
-        return $(`//android.view.View[@text="WebdriverIO"]`)
-    }
+  get robotImage(): ChainablePromiseElement {
+    return $(`//android.view.View[@text="WebdriverIO"]`);
+  }
 
-    get getStartedTitle(){
-        return $(`//android.widget.TextView[@text="Getting Started"]`)
-    }
-    
-    get getStartedBreadCrumbsText(){
-        return  $(`//android.view.View[@text="Getting Started"]`)
-    }
+  get getStartedTitle(): ChainablePromiseElement {
+    return $(`//android.widget.TextView[@text="Getting Started"]`);
+  }
 
-    get whyWebDriverIoTitle(){
-        return $(`//android.widget.TextView[@text="Why Webdriver.IO?"]`)
-    }
+  get getStartedBreadCrumbsText(): ChainablePromiseElement {
+    return $(`//android.widget.TextView[@text="Getting Started"]`);
+  }
 
-    get whyWebDriverIoBreadCrumbsText(){
-        return  $(`//android.view.View[@text="Why Webdriver.IO?"]`)
-    }
+  get whyWebDriverIoTitle(): ChainablePromiseElement {
+    return $(`//android.widget.TextView[@text="Why Webdriver.IO?"]`);
+  }
 
-    getBtnByContentDescName(desc: string){
-        return $(`//android.view.View[@content-desc="${desc}"]`)
-    }
+  get whyWebDriverIoBreadCrumbsText(): ChainablePromiseElement {
+    return $(`//android.view.View[@text="Why Webdriver.IO?"]`);
+  }
+
+  get repositoriesTabInGh(): ChainablePromiseElement {
+    return $(`//android.widget.TextView[@text="Repositories"]`);
+  }
+
+  get subscribeYouTubeBtn(): ChainablePromiseElement {
+    return $(`//android.view.ViewGroup[@content-desc="Subscribe to WebdriverIO."]`);
+  }
+
+  getBtnByContentDescName(desc: string): ChainablePromiseElement {
+    return $(`//android.view.View[@content-desc="${desc}"]`);
+  }
 }
 
 export default new WebviewPage();

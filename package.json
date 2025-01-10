@@ -2,6 +2,7 @@
   "name": "wdio-native-app",
   "type": "module",
   "devDependencies": {
+    "@faker-js/faker": "^9.3.0",
     "@types/node": "^22.10.5",
     "@wdio/browser-runner": "^9.5.1",
     "@wdio/browserstack-service": "^9.4.5",
@@ -10,14 +11,17 @@
     "@wdio/mocha-framework": "^9.4.4",
     "@wdio/spec-reporter": "^9.4.4",
     "@wdio/types": "^9.5.0",
+    "dotenv": "^16.4.7",
     "sharp": "^0.33.5",
     "typescript": "^5.7.2"
   },
   "scripts": {
     "wdio": "npx wdio run ./wdio.conf.ts",
-    "webview": "npx wdio run ./wdio.conf.ts --spec webview.spec.ts"
-  },
-  "dependencies": {
-    "dotenv": "^16.4.7"
+    "webview": "npx wdio run ./wdio.conf.ts --spec webview.spec.ts",
+    "home": "npx wdio run ./wdio.conf.ts --spec home.spec.ts",
+    "login": "npx wdio run ./wdio.conf.ts --spec login.spec.ts",
+    "forms": "npx wdio run ./wdio.conf.ts --spec forms.spec.ts",
+    "swipe": "npx wdio run ./wdio.conf.ts --spec swipe.spec.ts",
+    "drag": "npx wdio run ./wdio.conf.ts --spec dragDrop.spec.ts"
   }
 }
