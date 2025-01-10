@@ -1,6 +1,7 @@
 import Page from "./base.page";
 
 class LoginPage extends Page {
+    
   get inputEmail(): ChainablePromiseElement {
     return $(`//android.widget.EditText[@content-desc="input-email"]`);
   }

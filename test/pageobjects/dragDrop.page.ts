@@ -1,6 +1,7 @@
 import Page from "./base.page";
 
 class DragPage extends Page {
+    
   get dragAndDropTitle(): ChainablePromiseElement {
     return $('//android.widget.TextView[@text="Drag and Drop"]');
   }
@@ -12,54 +13,71 @@ class DragPage extends Page {
   get dragPieceL1(): ChainablePromiseElement {
     return $('//android.view.ViewGroup[@content-desc="drag-l1"]');
   }
+
   get dragPieceL2(): ChainablePromiseElement {
     return $('//android.view.ViewGroup[@content-desc="drag-l2"]');
   }
+
   get dragPieceL3(): ChainablePromiseElement {
     return $('//android.view.ViewGroup[@content-desc="drag-l3"]');
   }
+
   get dragPieceC1(): ChainablePromiseElement {
     return $('//android.view.ViewGroup[@content-desc="drag-c1"]');
   }
+
   get dragPieceC2(): ChainablePromiseElement {
     return $('//android.view.ViewGroup[@content-desc="drag-c2"]');
   }
+
   get dragPieceC3(): ChainablePromiseElement {
     return $('//android.view.ViewGroup[@content-desc="drag-c3"]');
   }
+
   get dragPieceR1(): ChainablePromiseElement {
     return $('//android.view.ViewGroup[@content-desc="drag-r1"]');
   }
+
   get dragPieceR2(): ChainablePromiseElement {
     return $('//android.view.ViewGroup[@content-desc="drag-r2"]');
   }
+
   get dragPieceR3(): ChainablePromiseElement {
     return $('//android.view.ViewGroup[@content-desc="drag-r3"]');
   }
+
   get dropPieceL1(): ChainablePromiseElement {
     return $('//android.view.ViewGroup[@content-desc="drop-l1"]');
   }
+
   get dropPieceL2(): ChainablePromiseElement {
     return $('//android.view.ViewGroup[@content-desc="drop-l2"]');
   }
+
   get dropPieceL3(): ChainablePromiseElement {
     return $('//android.view.ViewGroup[@content-desc="drop-l3"]');
   }
+
   get dropPieceC1(): ChainablePromiseElement {
     return $('//android.view.ViewGroup[@content-desc="drop-c1"]');
   }
+
   get dropPieceC2(): ChainablePromiseElement {
     return $('//android.view.ViewGroup[@content-desc="drop-c2"]');
   }
+
   get dropPieceC3(): ChainablePromiseElement {
     return $('//android.view.ViewGroup[@content-desc="drop-c3"]');
   }
+
   get dropPieceR1(): ChainablePromiseElement {
     return $('//android.view.ViewGroup[@content-desc="drop-r1"]');
   }
+
   get dropPieceR2(): ChainablePromiseElement {
     return $('//android.view.ViewGroup[@content-desc="drop-r2"]');
   }
+
   get dropPieceR3(): ChainablePromiseElement {
     return $('//android.view.ViewGroup[@content-desc="drop-r3"]');
   }

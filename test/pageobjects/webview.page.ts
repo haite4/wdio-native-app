@@ -1,6 +1,7 @@
 import Page from "./base.page";
 
 class WebviewPage extends Page {
+    
   get robotImage(): ChainablePromiseElement {
     return $(`//android.view.View[@text="WebdriverIO"]`);
   }

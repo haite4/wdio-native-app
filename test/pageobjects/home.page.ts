@@ -1,6 +1,7 @@
 import Page from "./base.page";
 
 class HomePage extends Page {
+    
   get robotImage(): ChainablePromiseElement {
     return $(`//android.widget.ScrollView[@content-desc="Home-screen"]/android.view.ViewGroup/android.widget.ImageView[1]`);
  }

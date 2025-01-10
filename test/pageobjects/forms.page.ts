@@ -1,6 +1,7 @@
 import Page from "./base.page";
 
 class FormsPage extends Page {
+    
   get inputFieldTitle(): ChainablePromiseElement {
     return $(`//android.widget.TextView[@text="Input field:"]`);
   }

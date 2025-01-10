@@ -1,6 +1,7 @@
 import Page from "./base.page";
 
 class SwipePage extends  Page {
+    
     get swipeHorizontalTitle(): ChainablePromiseElement{
         return $(`//android.widget.TextView[@text="Swipe horizontal"]`)
     }
