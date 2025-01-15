@@ -34,34 +34,30 @@ This repository contains automated tests using WebdriverIo, Appium, and BrowserS
 
 ## Steps to Launch
 
-1. **Run all tests:**:
+1. **Run webview tab in local by default**
     ```sh
-    npm run wdio
+     ./run-wdio.sh  -s webview.spec.ts
     ```
-2. **Run webview tab**
+2. **Run home tab in local by default**
     ```sh
-    npm run webview
+    ./run-wdio.sh  -s home.spec.ts
     ```
-3. **Run home tab**
+3. **Run login tab in local by default**
     ```sh
-    npm run home
+    ./run-wdio.sh  -s login.spec.ts
     ```
-4. **Run login tab**
+4. **Run forms tab in local by default**
     ```sh
-    npm run login
+    ./run-wdio.sh  -s forms.spec.ts
     ```
-5. **Run forms tab**
+5. **Run swipe tab in local by default**
     ```sh
-    npm run forms
-    ```
-6. **Run swipe tab**
-    ```sh
-    npm run swipe
+    ./run-wdio.sh  -s swipe.spec.ts
     ```
 
-7. **Run drag tab**
+6. **Run drag tab in local by default**
     ```sh
-    npm run drag
+     ./run-wdio.sh  -s drag.spec.ts
     ```
 
 ## env.example

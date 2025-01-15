@@ -2,95 +2,85 @@ import Page from "./base.page";
 
 class LoginPage extends Page {
     
-  get inputEmail(): ChainablePromiseElement {
+  get inputEmail(){
     return $(`//android.widget.EditText[@content-desc="input-email"]`);
   }
 
-  get inputPassword(): ChainablePromiseElement {
+  get inputPassword(){
     return $(`//android.widget.EditText[@content-desc="input-password"]`);
   }
 
-  get btnSubmit(): ChainablePromiseElement {
+  get btnSubmit(){
     return $(
       '//android.view.ViewGroup[@content-desc="button-LOGIN"]/android.view.ViewGroup'
     );
   }
 
-  get loginSignUpTitle(): ChainablePromiseElement {
+  get loginSignUpTitle(){
     return $(`//android.widget.TextView[@text="Login / Sign up Form"]`);
   }
 
-  get emailInputError(): ChainablePromiseElement {
-    return $(
-      `//android.widget.TextView[@text="Please enter a valid email address"]`
-    );
+  get emailInputError(){
+    return $(`//android.widget.TextView[@text="Please enter a valid email address"]`);
   }
 
-  get passwordInputError(): ChainablePromiseElement {
-    return $(
-      `//android.widget.TextView[@text="Please enter at least 8 characters"]`
-    );
+  get passwordInputError(){
+    return $(`//android.widget.TextView[@text="Please enter at least 8 characters"]`);
   }
 
-  get popUpWindow(): ChainablePromiseElement {
+  get popUpWindow(){
     return $(`/hierarchy/android.widget.FrameLayout`);
   }
 
-  get popUpWindowTitle(): ChainablePromiseElement {
+  get popUpWindowTitle(){
     return $(`//android.widget.TextView[@resource-id="android:id/alertTitle"]`);
   }
 
-  get popUpWindowDescription(): ChainablePromiseElement {
+  get popUpWindowDescription(){
     return $(`//android.widget.TextView[@resource-id="android:id/message"]`);
   }
 
-  get popUpWindowSubmitBtn(): ChainablePromiseElement {
+  get popUpWindowSubmitBtn(){
     return $(`//android.widget.Button[@resource-id="android:id/button1"]`);
   }
 
-  get signUpSwitcherTab(): ChainablePromiseElement {
+  get signUpSwitcherTab(){
     return $(`//android.widget.TextView[@text="Sign up"]`);
   }
 
-  get confirmPasswordInput(): ChainablePromiseElement {
-    return $(
-      `//android.widget.EditText[@content-desc="input-repeat-password"]`
-    );
+  get confirmPasswordInput(){
+    return $( `//android.widget.EditText[@content-desc="input-repeat-password"]`);
   }
 
-  get passwordMismatchError(): ChainablePromiseElement {
-    return $(
-      `//android.widget.TextView[@text="Please enter the same password"]`
-    );
+  get passwordMismatchError(){
+    return $(`//android.widget.TextView[@text="Please enter the same password"]`);
   }
 
-  get submitSignUpBtn(): ChainablePromiseElement {
-    return $(
-      `//android.view.ViewGroup[@content-desc="button-SIGN UP"]/android.view.ViewGroup`
-    );
+  get submitSignUpBtn(){
+    return $(`//android.view.ViewGroup[@content-desc="button-SIGN UP"]/android.view.ViewGroup`);
   }
 
-  async clickOnPopUpSubmitBtn(): Promise<void> {
+  async clickOnPopUpSubmitBtn(){
     await this.popUpWindowSubmitBtn.click();
   }
 
-  async clickOnSubmitBtn(): Promise<void> {
+  async clickOnSubmitBtn(){
     await this.btnSubmit.click();
   }
 
-  async clickOnEmailInput(): Promise<void> {
+  async clickOnEmailInput(){
     await this.inputEmail.click();
   }
 
-  async clickOnPasswordInput(): Promise<void> {
+  async clickOnPasswordInput(){
     await this.inputPassword.click();
   }
 
-  async clickOnSubmitSignUpBtn(): Promise<void> {
+  async clickOnSubmitSignUpBtn(){
     await this.submitSignUpBtn.click();
   }
 
-  async login(username: string, password: string): Promise<void> {
+  async login(username: string, password: string){
     await this.inputEmail.setValue(username);
     await this.inputPassword.setValue(password);
     await this.btnSubmit.click();

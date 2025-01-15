@@ -1,61 +1,74 @@
 export default class Page {
     
-  get webvieBtn(): ChainablePromiseElement {
+  get webvieBtn(){
     return $('//*[@content-desc="Webview"]');
   }
-  get loginBtn(): ChainablePromiseElement {
+
+  get loginBtn(){
     return $("~Login");
   }
-  get formsBtn(): ChainablePromiseElement {
+
+  get formsBtn(){
     return $("~Forms");
   }
-  get swipeBtn(): ChainablePromiseElement {
+
+  get swipeBtn(){
     return $("~Swipe");
   }
-  get dragBtn(): ChainablePromiseElement {
+
+  get dragBtn(){
     return $("~Drag");
   }
 
-  get homeBtn(): ChainablePromiseElement {
+  get homeBtn(){
     return $("~Home");
   }
 
-  get alertOKBtn(): ChainablePromiseElement {
+  get alertOKBtn(){
     return $('//android.widget.Button[@resource-id="android:id/button1"]');
   }
 
-  get breadCrumbs(): ChainablePromiseElement {
+  get breadCrumbs(){
     return $(`//android.view.View[@text="Breadcrumbs"]`);
   }
 
-  get backToHomeIcon(): ChainablePromiseElement {
+  get backToHomeIcon(){
     return $(`//android.view.View[@content-desc="Home page"]/android.widget.Image`);
   }
 
-  async openLoginTab(): Promise<void> {
+  get loadingElement(){
+    return $(`//android.widget.TextView[@text="LOADING..."]`)
+  }
+
+  async openLoginTab(){
     await this.loginBtn.click();
   }
-  async openFormsTab(): Promise<void> {
+
+  async openFormsTab(){
     await this.formsBtn.click();
   }
-  async openSwipeTab(): Promise<void> {
+
+  async openSwipeTab(){
     await this.swipeBtn.click();
   }
-  async openDragTab(): Promise<void> {
+
+  async openDragTab(){
     await this.dragBtn.click();
   }
-  async openWebvieTab(): Promise<void> {
+
+  async openWebvieTab(){
     await this.webvieBtn.click();
   }
-  async clickAlertOKBtn(): Promise<void> {
+
+  async clickAlertOKBtn(){
     await this.alertOKBtn.click();
   }
 
-  async clickOnBackToHomeIcon(): Promise<void> {
+  async clickOnBackToHomeIcon(){
     await this.backToHomeIcon.click();
   }
 
-  async swipe(startPercentageX: number, startPercentageY: number, endPercentageX: number, endPercentageY: number, speed: number): Promise<void> {
+  async swipe(startPercentageX: number, startPercentageY: number, endPercentageX: number, endPercentageY: number, speed: number){
     const { width, height } = await driver.getWindowRect();
 
     const startX = Math.floor(width * startPercentageX);
@@ -78,49 +91,24 @@ export default class Page {
     ]);
   }
 
-  async swipeDownToExpectedElement(element: ChainablePromiseElement): Promise<void> {
-    let elementVisible = false;
-
-    while (!elementVisible) {
-      await this.swipe(0.2, 0.8, 0.2, 0.7, 40);
-
-      try {
-        await expect(element).toBeDisplayed();
-        elementVisible = true;
-      } catch (error) {
-        console.log(element.selector + " is not visible, continuing swipe...");
+  async waitForElement(element: ChainablePromiseElement, shouldDisappear: boolean = false, timeout: number = 40000, timeoutMsg: string = 'Element did not meet the condition within the timeout') {
+    await driver.waitUntil(
+      async () => {
+        const isDisplayed = await element.isDisplayed();
+        return shouldDisappear ? !isDisplayed : isDisplayed;
+      },
+      {
+        timeout,
+        timeoutMsg,
       }
-    }
-
-    if (!elementVisible) {
-      throw new Error(
-        element.selector + " is not found within the timeout period"
-      );
-    }
+    );
   }
 
-  async swipeDown(): Promise<void> {
-    const { width, height } = await driver.getWindowRect();
-    const startX = Math.floor(width * 0.5);
-    const startY = Math.floor(height * 0.8);
-    const endY = Math.floor(height * 0.2);
+  async scrollToText(text: string) {
+    await driver.execute('mobile: scroll', {
+        strategy: '-android uiautomator',
+        selector: `new UiScrollable(new UiSelector().scrollable(true)).scrollTextIntoView("${text}")`
+    });
+}
 
-    await browser.performActions([
-      {
-        action: "press",
-        options: { x: startX, y: startY },
-      },
-      {
-        action: "wait",
-        options: { ms: 500 },
-      },
-      {
-        action: "moveTo",
-        options: { x: startX, y: endY },
-      },
-      {
-        action: "release",
-      },
-    ]);
-  }
 }

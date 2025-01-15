@@ -2,36 +2,32 @@ import Page from "./base.page";
 
 class WebviewPage extends Page {
     
-  get robotImage(): ChainablePromiseElement {
+  get robotImage() {
     return $(`//android.view.View[@text="WebdriverIO"]`);
   }
 
-  get getStartedTitle(): ChainablePromiseElement {
+  get getStartedTitle() {
     return $(`//android.widget.TextView[@text="Getting Started"]`);
   }
 
-  get getStartedBreadCrumbsText(): ChainablePromiseElement {
+  get getStartedBreadCrumbsText() {
     return $(`//android.widget.TextView[@text="Getting Started"]`);
   }
 
-  get whyWebDriverIoTitle(): ChainablePromiseElement {
+  get whyWebDriverIoTitle() {
     return $(`//android.widget.TextView[@text="Why Webdriver.IO?"]`);
   }
 
-  get whyWebDriverIoBreadCrumbsText(): ChainablePromiseElement {
+  get whyWebDriverIoBreadCrumbsText() {
     return $(`//android.view.View[@text="Why Webdriver.IO?"]`);
   }
 
-  get repositoriesTabInGh(): ChainablePromiseElement {
-    return $(`//android.widget.TextView[@text="Repositories"]`);
-  }
-
-  get subscribeYouTubeBtn(): ChainablePromiseElement {
+  get subscribeYouTubeBtn() {
     return $(`//android.view.ViewGroup[@content-desc="Subscribe to WebdriverIO."]`);
   }
 
-  getBtnByContentDescName(desc: string): ChainablePromiseElement {
-    return $(`//android.view.View[@content-desc="${desc}"]`);
+  getBtnByContentDescName(desc: string) {
+      return $(`//android.view.View[@content-desc="${desc}"]`);
   }
 }
 
