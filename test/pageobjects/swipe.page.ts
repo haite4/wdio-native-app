@@ -37,7 +37,7 @@ class SwipePage extends  Page {
     }
 
     async swipeHorizontal(element: ChainablePromiseElement){
-     await this.swipeInDirection(element, "right")
+        await this.swipeInDirection(element, "right")
     }
 
     async swipeToCenterTheScreen(){

@@ -6,6 +6,7 @@ describe("Verify drap and drop functionality", () => {
     beforeEach("Open drag and drop tab", async() => {
         await dragDropPage.openDragTab();
     })
+    
     it("TC-11 Verify refreshing the Drag-and-Drop puzzle.", async() => {
         const dragPieceL2 = dragDropPage.dragPiece(dragDropPage.pieceNames[1])
         const dropPieceL2 =  dragDropPage.dropPiece(dragDropPage.pieceNames[1])

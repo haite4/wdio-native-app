@@ -2,6 +2,7 @@ import homePage from "../pageobjects/home.page";
 import systemMsg from "../../fixtures/textSymbols/systemMsg.json";
 
 describe("Verify functionality of home page", () => {
+  
     it("TC 02. Verify elements visibility on the Home screen", async () => {
       await expect(homePage.robotImage).toBeDisplayed();
       await expect(homePage.webdriverTitle).toBeDisplayed();

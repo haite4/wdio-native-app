@@ -9,6 +9,7 @@ describe("Verify login and register functionality", () => {
     beforeEach("Open login tab", async() => {
         await loginPage.openLoginTab();
     })
+    
     it("TC-04 Login with valid credentials.", async() => {
         await expect(loginPage.loginSignUpTitle).toBeDisplayed();
         await expect(loginPage.loginSignUpTitle).toHaveText(systemMsg.titles.loginSignUpTitle);

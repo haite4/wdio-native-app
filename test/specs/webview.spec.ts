@@ -63,4 +63,4 @@ describe("Verify functionality of webview page", () => {
             }
         }
     })
-})
+});
