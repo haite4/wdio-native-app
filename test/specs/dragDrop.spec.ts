@@ -1,5 +1,4 @@
 import dragDropPage from "../pageobjects/dragDrop.page";
-import systemMsg from "../../fixtures/textSymbols/systemMsg.json";
 
 describe("Verify drap and drop functionality", () => {
 

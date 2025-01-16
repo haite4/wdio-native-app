@@ -1,5 +1,4 @@
 import homePage from "../pageobjects/home.page";
-import systemMsg from "../../fixtures/textSymbols/systemMsg.json";
 
 describe("Verify functionality of home page", () => {
 
@@ -8,7 +7,6 @@ describe("Verify functionality of home page", () => {
       await expect(homePage.webdriverTitle).toBeDisplayed();
       await expect(homePage.ioTitle).toBeDisplayed();
       await expect(homePage.webdriverIoDescription).toBeDisplayed();
-      await expect(homePage.supportText).toBeDisplayed();
       await expect(homePage.supportText).toBeDisplayed();
     });
 

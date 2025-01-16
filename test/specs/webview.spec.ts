@@ -1,6 +1,5 @@
 import webviewPage from "../pageobjects/webview.page";
 import { webviewTabBtn } from "../../constants/btnDescContent";
-import systemMsg from "../../fixtures/textSymbols/systemMsg.json";
 import { UrlPaths } from "../../constants/urlPaths";
 import swipePage from "../pageobjects/swipe.page";
 
@@ -15,7 +14,7 @@ describe("Verify functionality of webview page", () => {
         await swipePage.swipeToCenterTheScreen();
         webviewTabBtn.map(async (desc) => {
             await expect(webviewPage.getBtnByContentDescName(desc)).toBeDisplayed();
-            await expect(await webviewPage.getBtnByContentDescName(desc).getAttribute("content-desc")).toBe(desc);
+            await expect(webviewPage.getBtnByContentDescName(desc)).toHaveAttr("content-desc", desc)
         })
 
         for (const btn of webviewTabBtn) {

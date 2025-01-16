@@ -1,5 +1,4 @@
 import loginPage from "../pageobjects/login.page";
-import systemMsg from "../../fixtures/textSymbols/systemMsg.json";
 import { faker } from "@faker-js/faker";
 
 describe("Verify login and register functionality", () => {
@@ -12,7 +11,6 @@ describe("Verify login and register functionality", () => {
 
     it("TC-04 Login with valid credentials.", async() => {
         await expect(loginPage.loginSignUpTitle).toBeDisplayed();
-        await expect(loginPage.loginSignUpTitle).toBeDisplayed();
         await loginPage.clickOnSubmitBtn();
         await expect(loginPage.emailInputError).toBeDisplayed();
         await expect(loginPage.passwordInputError).toBeDisplayed();
@@ -20,18 +18,18 @@ describe("Verify login and register functionality", () => {
         await loginPage.inputEmail.setValue(randomEmail);
         await expect(loginPage.inputEmail).toHaveText(randomEmail);
         await loginPage.clickOnSubmitBtn();
-        await expect(await loginPage.emailInputError.isDisplayed()).toBe(false);
+        await expect(loginPage.emailInputError).not.toBeDisplayed();
         await expect(loginPage.passwordInputError).toBeDisplayed();
         
         await loginPage.inputPassword.setValue(randomPassword());
-        await expect(await loginPage.inputPassword.getAttribute("content-desc")).toBe("input-password");
+        await expect(loginPage.inputPassword).toHaveAttr("content-desc", "input-password");
         await loginPage.clickOnSubmitBtn();
         await expect(loginPage.popUpWindow).toBeDisplayed();
         await expect(loginPage.popUpWindowTitle).toBeDisplayed();
         await expect(loginPage.popUpWindowDescription).toBeDisplayed();
         await expect(loginPage.popUpWindowSubmitBtn).toBeDisplayed();
         await loginPage.clickOnPopUpSubmitBtn();
-        await expect(await loginPage.popUpWindowTitle.isDisplayed()).toBe(false);
+        await expect(loginPage.popUpWindowTitle).not.toBeDisplayed();
     })
 
     it("TC-06 Verify  Password input  with  invalid  symbols  on the Login page.", async() => {
@@ -41,7 +39,7 @@ describe("Verify login and register functionality", () => {
         await loginPage.inputPassword.setValue(randomPassword(7));
         await loginPage.clickOnSubmitBtn();
         await expect(loginPage.passwordInputError).toBeDisplayed();
-        await expect(await loginPage.inputPassword.getAttribute("content-desc")).toBe("input-password");
+        await expect(loginPage.inputPassword).toHaveAttr("content-desc", "input-password")
     })
 
     it("TC-08 Verify error message for mismatched passwords", async() => {

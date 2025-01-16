@@ -1,5 +1,4 @@
 import formsPage from "../pageobjects/forms.page";
-import systemMsg from "../../fixtures/textSymbols/systemMsg.json";
 import { faker } from "@faker-js/faker";
 
 describe("Verify Forms functionality", () => {
@@ -46,10 +45,7 @@ describe("Verify Forms functionality", () => {
         await expect(formsPage.activePopUpTitle).toBeDisplayed();
         await expect(formsPage.activePopUpDesc).toBeDisplayed();
         await expect(formsPage.activePopUpAskMeLaterBtn).toBeDisplayed();
-        await expect(formsPage.activePopUpAskMeLaterBtn).toBeDisplayed();
         await expect(formsPage.activePopUpCancelBtn).toBeDisplayed();
-        await expect(formsPage.activePopUpCancelBtn).toBeDisplayed();
-        await expect(formsPage.activePopUpOkBtn).toBeDisplayed();
         await expect(formsPage.activePopUpOkBtn).toBeDisplayed();
         await formsPage.clickOutSidePopUp();
         await expect(formsPage.activePopUpTitle).toBeDisplayed();
