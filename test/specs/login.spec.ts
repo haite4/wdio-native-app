@@ -15,8 +15,6 @@ describe("Verify login and register functionality", () => {
         await expect(loginPage.loginSignUpTitle).toBeDisplayed();
         await loginPage.clickOnSubmitBtn();
         await expect(loginPage.emailInputError).toBeDisplayed();
-        await expect(loginPage.emailInputError).toBeDisplayed();
-        await expect(loginPage.passwordInputError).toBeDisplayed();
         await expect(loginPage.passwordInputError).toBeDisplayed();
 
         await loginPage.inputEmail.setValue(randomEmail);
