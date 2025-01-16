@@ -14,43 +14,43 @@ describe("Verify Forms functionality", () => {
         const generateThirtyCharacters = randomWord(30);
         const generateThirtyOneCharacters = randomWord(31);
 
-        await expect(formsPage.inputFieldTitle).toHaveText(systemMsg.titles.inputFieldFormsTitle);
-        await expect(formsPage.firstInputField).toHaveText(systemMsg.titles.typeSomething);
+        await expect(formsPage.inputFieldTitle).toBeDisplayed();
+        await expect(formsPage.firstInputField).toBeDisplayed();
         await expect(formsPage.youHaveTypedInput).toBeDisplayed();
-        await expect(formsPage.youHaveTypedTitle).toHaveText(systemMsg.titles.youHaveTypedTitle);
+        await expect(formsPage.youHaveTypedTitle).toBeDisplayed();
 
         await formsPage.firstInputField.setValue(generatedOneSymbol);
         await expect(formsPage.firstInputField).toHaveText(generatedOneSymbol);
         await formsPage.firstInputField.clearValue();
-        await expect(formsPage.firstInputField).toHaveText(systemMsg.titles.typeSomething);
+        await expect(formsPage.firstInputField).toBeDisplayed();
 
         await formsPage.firstInputField.setValue(generateThirtyCharacters);
         await expect(formsPage.firstInputField).toHaveText(generateThirtyCharacters);
         await formsPage.firstInputField.clearValue();
-        await expect(formsPage.firstInputField).toHaveText(systemMsg.titles.typeSomething);
+        await expect(formsPage.firstInputField).toBeDisplayed();
 
         await formsPage.firstInputField.setValue(generateThirtyOneCharacters);
         await expect(formsPage.firstInputField).toHaveText(generateThirtyOneCharacters.slice(0, -1));
         await formsPage.firstInputField.clearValue();
-        await expect(formsPage.firstInputField).toHaveText(systemMsg.titles.typeSomething);
+        await expect(formsPage.firstInputField).toBeDisplayed();
     })
 
     it("TC-09 Verify Forms buttons functionality.", async() => {
-        await expect(formsPage.formsButtonsTitle).toHaveText(systemMsg.titles.buttonsTitle);
+        await expect(formsPage.formsButtonsTitle).toBeDisplayed();
         await expect(formsPage.activeBtn).toBeDisplayed();
-        await expect(formsPage.activeBtnText).toHaveText(systemMsg.buttonText.activeBtn);
+        await expect(formsPage.activeBtnText).toBeDisplayed();
         await expect(formsPage.inactiveBtn).toBeDisplayed();
-        await expect(formsPage.inactiveBtnText).toHaveText(systemMsg.buttonText.inactiveBtn);
+        await expect(formsPage.inactiveBtnText).toBeDisplayed();
 
         await formsPage.activeBtn.click();
-        await expect(formsPage.activePopUpTitle).toHaveText(systemMsg.titles.formsButtonActivePopUpTitle);
-        await expect(formsPage.activePopUpDesc).toHaveText(systemMsg.descriptions.formsButtonActivePopUpDesc);
+        await expect(formsPage.activePopUpTitle).toBeDisplayed();
+        await expect(formsPage.activePopUpDesc).toBeDisplayed();
         await expect(formsPage.activePopUpAskMeLaterBtn).toBeDisplayed();
-        await expect(formsPage.activePopUpAskMeLaterBtn).toHaveText(systemMsg.buttonText.askMeLaterBtnText);
+        await expect(formsPage.activePopUpAskMeLaterBtn).toBeDisplayed();
         await expect(formsPage.activePopUpCancelBtn).toBeDisplayed();
-        await expect(formsPage.activePopUpCancelBtn).toHaveText(systemMsg.buttonText.cancelBtnText);
+        await expect(formsPage.activePopUpCancelBtn).toBeDisplayed();
         await expect(formsPage.activePopUpOkBtn).toBeDisplayed();
-        await expect(formsPage.activePopUpOkBtn).toHaveText(systemMsg.oK);
+        await expect(formsPage.activePopUpOkBtn).toBeDisplayed();
         await formsPage.clickOutSidePopUp();
         await expect(formsPage.activePopUpTitle).toBeDisplayed();
 

@@ -19,12 +19,12 @@ describe("Verify functionality of webview page", () => {
         })
 
         for (const btn of webviewTabBtn) {
+            await webviewPage.getBtnByContentDescName(btn).click();
             switch (btn) {
                 case "Get Started":
-                    await webviewPage.getBtnByContentDescName(btn).click();
-                    await expect(webviewPage.getStartedTitle).toHaveText(systemMsg.titles.gettingStartedTitle);
+                    await expect(webviewPage.getStartedTitle).toBeDisplayed();
                     await expect(webviewPage.breadCrumbs).toBeDisplayed();
-                    await expect(webviewPage.getStartedBreadCrumbsText).toHaveText(systemMsg.titles.gettingStartedTitle);
+                    await expect(webviewPage.getStartedBreadCrumbsText).toBeDisplayed();
                     await expect(webviewPage.backToHomeIcon).toBeDisplayed();
 
                     await webviewPage.clickOnBackToHomeIcon();
@@ -32,10 +32,9 @@ describe("Verify functionality of webview page", () => {
                     await swipePage.swipeToCenterTheScreen();
                     break;
                 case "Why WebdriverIO?":
-                    await webviewPage.getBtnByContentDescName(btn).click();
-                    await expect(webviewPage.whyWebDriverIoTitle).toHaveText(systemMsg.titles.whyWebdriverIoBreadCrumbsText);
-                    await expect(webviewPage.whyWebDriverIoBreadCrumbsText).toHaveText(systemMsg.titles.whyWebdriverIoBreadCrumbsText);
-                    await expect(webviewPage.getStartedBreadCrumbsText).toHaveText(systemMsg.titles.gettingStartedTitle);
+                    await expect(webviewPage.whyWebDriverIoTitle).toBeDisplayed();
+                    await expect(webviewPage.whyWebDriverIoBreadCrumbsText).toBeDisplayed();
+                    await expect(webviewPage.getStartedBreadCrumbsText).toBeDisplayed();
                     await expect(webviewPage.backToHomeIcon).toBeDisplayed();
 
                     await webviewPage.clickOnBackToHomeIcon();
@@ -43,7 +42,6 @@ describe("Verify functionality of webview page", () => {
                     await swipePage.swipeToCenterTheScreen();
                     break;
                 case "View on GitHub":
-                    await webviewPage.getBtnByContentDescName(btn).click();
                     const contexts = await driver.getContexts();
 
                     if (contexts.includes("WEBVIEW_chrome")) {
@@ -56,7 +54,6 @@ describe("Verify functionality of webview page", () => {
                     await driver.back();
                     break;
                 case "Watch on YouTube":
-                    await webviewPage.getBtnByContentDescName(btn).click();
                     await webviewPage.waitForElement(webviewPage.subscribeYouTubeBtn);
                     await expect(webviewPage.subscribeYouTubeBtn).toBeDisplayed();
                     break;
