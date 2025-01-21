@@ -1,0 +1,29 @@
+{
+    "forms": {
+        "inputFieldTitle": "Input field:",
+        "defaultInputText": "Type something",
+        "typedTextTitle": "You have typed:",
+        "switchTextOn": "Click to turn the switch ON",
+        "switchTextOff": "Click to turn the switch OFF",
+        "dropdownTitle": "Dropdown:",
+        "defaultDropdownText": "Select an item..."
+    },
+    "dropdownItems": {
+        "awesomeWebdriver": "webdriver.io is awesome",
+        "awesomeAppium": "Appium is awesome"
+    },
+    "scrollItems": [
+        "Test in Real Environments",
+        "Versatile and Feature Rich",
+        "Auto Wait",
+        "Based on Web Standards",
+        "Native Mobile Support",
+        "Committed Community"
+    ],
+    "copyrightText": "Copyright © 2024 OpenJS Foundation",
+    "signUpSuccess": "You successfully signed up!",
+    "invalidEmail": "Please enter a valid email address",
+    "invalidPassword": "Please enter at least 8 characters",
+    "confirmPasswordMismatch": "Please enter the same password",
+    "firstHeaderText": "We stand with the people of Ukraine"
+}
