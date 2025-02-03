@@ -1,54 +1,84 @@
 ### Mobile Testing for native app
 
-## Summary
+# WebdriverIO + Appium + BrowserStack
 
-This repository contains automated tests for the WebdriverIO Android Demo App, configured to run on [Browserstack](https://www.browserstack.com) via GitHub Actions or a local Appium server.
+## Introduction
+This repository contains automated tests using WebdriverIo, Appium, and BrowserStack written specifically for the application [Mobile Native app](https://github.com/webdriverio/native-demo-app). It includes test for login, webview, drag, swipe, home, forms tab.
 
 ## Requirements
-
-- Node.js (v20 or later)
-
-- Java - for local Appium server
-- Android Studio - for setting up local emulator
-- Appium with UiAutomator2 driver - for running tests locally
-- Appium Doctor, Appium Inspector - not nessecary for running tests but recommended for validating Appium setup
+- **Node.js**: >=20.0.0
+- **Dependencies**:
+    - `faker-js/faker`:^9.3.0
+    - `dotenv`: ^16.4.7
+    - `sharp`: ^0.33.5
+    - `typescript`: ^5.7.2
+    - Java - for local Appium server
+    - Android Studio - for setting up local emulator
+    - Appium with UiAutomator2 driver - for running tests locally
+    - Appium Doctor, Appium Inspector - not nessecary for running tests but recommended for validating Appium setup
+  
 
 ## Steps to Install
+1. Install Node.js:
 
-1. Clone the repository or go to Code > Download ZIP
-2. Install dependencies: ```npm install```
-3. Appium: ```npm i --location=global appium```
+    [Node.js](https://nodejs.org/en/download)
+
+2. Clone the repository:
+    ```sh
+    https://github.com/haite4/wdio-native-app
+    ```
+3. Navigate to the project directory:
+    ```sh 
+    cd wdio-native-app
+    ```
+4. Install dependencies:
+    ```sh
+    npm install
+    ```
+5. Appium: ```npm i --location=global appium```
 ```appium driver install uiautomator2```
 
-## Running tests locally
+## Steps to Launch
 
-```npm run test-local```
+1. **Run webview tab in local by default**
+    ```sh
+     ./run-wdio.sh  -s webview.spec.ts
+    ```
+2. **Run home tab in local by default**
+    ```sh
+    ./run-wdio.sh  -s home.spec.ts
+    ```
+3. **Run login tab in local by default**
+    ```sh
+    ./run-wdio.sh  -s login.spec.ts
+    ```
+4. **Run forms tab in local by default**
+    ```sh
+    ./run-wdio.sh  -s forms.spec.ts
+    ```
+5. **Run swipe tab in local by default**
+    ```sh
+    ./run-wdio.sh  -s swipe.spec.ts
+    ```
 
-Make sure Android Studio is open and the Emulated Device is running.
-Local tests are configured to run on the default Android Studio emulated device pre-installed with the latest version of the program.
-The local configuration also uses the global Appium installation on your machine, make sure it is installed and configured properly.
+6. **Run drag tab in local by default**
+    ```sh
+     ./run-wdio.sh  -s drag.spec.ts
+    ```
 
-## Tips
+## env.example
 
-For a fresh Appium installation, it is recommended to use Appium Doctor to make sure it runs properly: 
+1. **BROWSERSTACK_USERNAME=**
+     You can get it when you create account on browserstack
 
-Install: ```npm install appium-doctor -g```
+2. **BROWSERSTACK_ACCESS_KEY=**
+    You can get it when you create account on browserstack
 
-Run: ```appium-doctor```
+3. **BROWSERSTACK_APP_ID**
+   substitute your data and paste this command into a bash terminal
 
-If there are any missing requirements, the program points them out (android, apkanalyzer.bat could NOT be found error can be ignored).
-
-You can also use Appium Inspector to check if you can start a local sesion
-
-Run Appium server manually: ```appium```
-
-Capabilities for Appium Inspector: 
-```
-{
-  "platformName": "Android",
-  "appium:deviceName": "emulator-5554",
-  "appium:app": "C:\\Users\\Denys\\Downloads\\android.wdio.native.app.v1.0.8.apk",
-  "appium:automationName": "UiAutomator2"
-}
-```
-Additionally, the deviceName may vary on different Android Studio installations, if you need to check/replace it in the config, you can go to Extended Controls > Help > Emulator ADB Serial Number
+    ```sh
+    curl -u "<browserstack_username>:<browserstack_access_key>" \
+    -X POST "https://api-cloud.browserstack.com/app-automate/upload" \
+    -F "file=@<path_to_your_mobileapp_apk>" 
+    ```

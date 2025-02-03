@@ -1,83 +1,116 @@
 import Page from "./base.page";
 
 class FormsPage extends Page {
-    get title() {
-        return $('//*[@text="Form components"]');
-    }
 
-    get textInputTitle() {
-        return $('//*[@text="Input field:"]');
-    }
+  get title() {
+    return $('//*[@text="Form components"]');
+}  
 
-    get textInput() {
-        return $('~text-input');
-    }
+  get inputFieldTitle(){
+    return $(`//android.widget.TextView[@text="Input field:"]`);
+  }
 
-    get textInputResultTitle() {
-        return $('//*[@text="You have typed:"]');
-    }
+  get firstInputField(){
+    return $(`//android.widget.EditText[@content-desc="text-input"]`);
+  }
 
-    get textInputResult() {
-        return $('~input-text-result');
-    }
+  get youHaveTypedInput(){
+    return $(`//android.widget.TextView[@content-desc="input-text-result"]`);
+  }
 
-    get switch() {
-        return $('~switch');
-    }
+  get youHaveTypedTitle(){
+    return $(`//android.widget.TextView[@text="You have typed:"]`);
+  }
 
-    get switchText() {
-        return $('~switch-text');
-    }
+  get formsButtonsTitle(){
+    return $(`//android.widget.TextView[@text="Buttons"]`);
+  }
 
-    get dropdownTitle() {
-        return $('//android.widget.TextView[@text="Dropdown:"]');
-    }
+  get activeBtn(){
+    return $(`//android.view.ViewGroup[@content-desc="button-Active"]/android.view.ViewGroup`);
+  }
 
-    get dropdown() {
-        return $('//android.widget.EditText[@text="Select an item..."]');
-    }
+  get activeBtnText(){
+    return $(`//android.widget.TextView[@text="Active"]`);
+  }
 
-    get arrowIcon() {
-        return $('//android.widget.TextView[@text="󰅀"]');
-    }
+  get inactiveBtn(){
+    return $(`//android.view.ViewGroup[@content-desc="button-Inactive"]/android.view.ViewGroup`);
+  }
 
-    get invactiveBtn() {
-        return $('//android.widget.TextView[@text="Inactive"]');
-    }
-    
-    get activeBtn() {
-        return $('~button-Active');
-    }
+  get inactiveBtnText(){
+    return $(`//android.widget.TextView[@text="Inactive"]`);
+  }
 
-    get activeBtnAlertText() {
-        return $('//android.widget.TextView[@text="This button is active"]');
-    }
+  get activePopUpTitle(){
+    return $(`//android.widget.TextView[@resource-id="android:id/alertTitle"]`);
+  }
 
-    get activeBtnAlertOKBtn() {
-        return $('~button-OK'); 
-    }
-    
-    async enterText(text: string): Promise<void> {
-        await this.textInput.setValue(text); 
-    }
+  get activePopUpDesc(){
+    return $(`//android.widget.TextView[@resource-id="android:id/message"]`);
+  }
 
-    async clickSwitch(): Promise<void> {
-        await this.switch.click();
-    }
+  get activePopUpAskMeLaterBtn(){
+    return $(`//android.widget.Button[@resource-id="android:id/button3"]`);
+  }
 
-    async selectDropdownItemAndVerify(itemText: string): Promise<void> {
-        await this.arrowIcon.click();
-        await $(`//android.widget.CheckedTextView[@resource-id="android:id/text1" and @text="${itemText}"]`).click();
-        await expect($(`//android.widget.EditText[@text="${itemText}"]`)).toBeDisplayed();
-    }
+  get activePopUpCancelBtn(){
+    return $(`//android.widget.Button[@resource-id="android:id/button2"]`);
+  }
 
-    async clickActiveBtn(): Promise<void> {
-        await this.activeBtn.click();
-    }
+  get activePopUpOkBtn(){
+    return $(`//android.widget.Button[@resource-id="android:id/button1"]`);
+  }
 
-    async clickActiveBtnAlertOKBtn(): Promise<void> {
-        await this.activeBtnAlertOKBtn.click();
-    }
+  get switch() {
+    return $('~switch');
 }
 
-export default new FormsPage();
+  get switchText() {
+      return $('~switch-text');
+  }
+
+  get dropdownTitle() {
+    return $('//android.widget.TextView[@text="Dropdown:"]');
+}
+
+  get dropdown() {
+      return $('//android.widget.EditText[@text="Select an item..."]');
+  }
+
+  get arrowIcon() {
+    return $('//android.widget.TextView[@text="󰅀"]');
+  }
+
+  get activeBtnAlertText() {
+    return $('//android.widget.TextView[@text="This button is active"]');
+  }
+
+
+  async clickOutSidePopUp() {
+    await driver.action("pointer", { parameters: { pointerType: 'touch' } }).move({ x: 50, y: 50 }).down().up().perform(true);
+  }
+
+   
+  async enterText(text: string): Promise<void> {
+    await this.firstInputField.setValue(text); 
+}
+
+  async clickSwitch(): Promise<void> {
+      await this.switch.click();
+  }
+
+  async selectDropdownItemAndVerify(itemText: string): Promise<void> {
+      await this.arrowIcon.click();
+      await $(`//android.widget.CheckedTextView[@resource-id="android:id/text1" and @text="${itemText}"]`).click();
+      await expect($(`//android.widget.EditText[@text="${itemText}"]`)).toBeDisplayed();
+  }
+
+  async clickActiveBtn(): Promise<void> {
+      await this.activeBtn.click();
+  }
+
+  async clickActiveBtnAlertOKBtn(): Promise<void> {
+      await this.activePopUpOkBtn.click();
+  }
+}

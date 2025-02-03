@@ -1,95 +1,135 @@
 import Page from "./base.page";
 
 class LoginPage extends Page {
-    get loginTitle() {
-        return $('//*[@text="Login / Sign up Form"]');
-    }
+    
+  get inputEmail(){
+    return $(`//android.widget.EditText[@content-desc="input-email"]`);
+  }
 
-    get emailInputField() {
-        return $('~input-email');
-    }
+  get inputPassword(){
+    return $(`//android.widget.EditText[@content-desc="input-password"]`);
+  }
 
-    get passwordInputField() {
-        return $('~input-password');
-    }
+  get loginSubmitBtn(){
+    return $(
+      '//android.view.ViewGroup[@content-desc="button-LOGIN"]/android.view.ViewGroup'
+    );
+  }
 
-    get loginSubmitBtn() {
-        return $('~button-LOGIN');
-    }
+  get loginSignUpTitle(){
+    return $(`//android.widget.TextView[@text="Login / Sign up Form"]`);
+  }
 
-    get loginSuccessMsg() {
-        return $('//android.widget.TextView[@text="You are logged in!"]') ;
-    }
+  get emailInputError(){
+    return $(`//android.widget.TextView[@text="Please enter a valid email address"]`);
+  }
 
-    get signUpSuccessMsg() {
-        return $('//*[@resource-id="android:id/message"]');
-    }
+  get passwordInputError(){
+    return $(`//android.widget.TextView[@text="Please enter at least 8 characters"]`);
+  }
 
-    get invalidEmailMsg() {
-        return $('//*[@text="Please enter a valid email address"]');
-    }
+  get popUpWindow(){
+    return $(`/hierarchy/android.widget.FrameLayout`);
+  }
 
-    get invalidPasswordMsg() {
-        return $('//*[@text="Please enter at least 8 characters"]');
-    }
+  get popUpWindowTitle(){
+    return $(`//android.widget.TextView[@resource-id="android:id/alertTitle"]`);
+  }
 
-    get mooveToSignUpForm() {
-        return $('//*[@text="Sign up"]');
-    }
+  get popUpWindowDescription(){
+    return $(`//android.widget.TextView[@resource-id="android:id/message"]`);
+  }
 
-    get mooveToLoginForm() {
-        return $('(//android.widget.TextView[@text="Login"])[1]');
-    }
+  get popUpWindowSubmitBtn(){
+    return $(`//android.widget.Button[@resource-id="android:id/button1"]`);
+  }
 
-    get signUpButton() {
-        return $('//*[@content-desc="button-SIGN UP"]');
-    }
+  get signUpSwitcherTab(){
+    return $(`//android.widget.TextView[@text="Sign up"]`);
+  }
 
-    get confirmPasswortInputField() {
-        return $('//*[@content-desc="input-repeat-password"]');
-    }
+  get confirmPasswordInput(){
+    return $( `//android.widget.EditText[@content-desc="input-repeat-password"]`);
+  }
 
-    get confirmPasswordErrorMsg() {
-        return $('//*[@text="Please enter the same password"]');
-    }
+  get passwordMismatchError(){
+    return $(`//android.widget.TextView[@text="Please enter the same password"]`);
+  }
 
-    get letterIcon() {
-        return $('//android.widget.TextView[@text="󰇰"]');
-    }
+  get submitSignUpBtn(){
+    return $(`//android.view.ViewGroup[@content-desc="button-SIGN UP"]/android.view.ViewGroup`);
+  }
 
-    get lockIcon() {
-        return $('//android.widget.TextView[@text="󰍁"]');
-    }
+  get loginSuccessMsg() {
+    return $('//android.widget.TextView[@text="You are logged in!"]') ;
+}
 
-    get secondLockIcon() {
-        return $('(//android.widget.TextView[@text="󰍁"])[2]');
-    }
+  get signUpSuccessMsg() {
+    return $('//*[@resource-id="android:id/message"]');
+  }
 
-    get description() {
-        return $('//*[contains(@text, "When the device has Touch/FaceID (iOS)")]');
-    }
+  get signInSwitcherTab() {
+    return $('(//android.widget.TextView[@text="Login"])[1]');
+}
 
-    async enterEmail(email: string) {
-        await this.emailInputField.setValue(email);
-    }
+  get letterIcon() {
+    return $('//android.widget.TextView[@text="󰇰"]');
+  }
 
-    async enterPassword(password: string) {
-        await this.passwordInputField.setValue(password);
-    }
+  get lockIcon() {
+    return $('//android.widget.TextView[@text="󰍁"]');
+  }
 
-    async enterConfirmPasswort(password: string) {
-        await this.confirmPasswortInputField.setValue(password);
-    }
+  get secondLockIcon() {
+    return $('(//android.widget.TextView[@text="󰍁"])[2]');
+}
 
-    async clickLoginSubmitBtn() {
-        await this.loginSubmitBtn.click();
-    }
+  get description() {
+    return $('//*[contains(@text, "When the device has Touch/FaceID (iOS)")]');
+  }
 
-    async login(email: string, password: string) {
-        await this.enterEmail(email);
-        await this.enterPassword(password);
-        await this.clickLoginSubmitBtn();
-    }
+
+  async clickOnPopUpSubmitBtn(){
+    await this.popUpWindowSubmitBtn.click();
+  }
+
+  async clickOnSubmitBtn(){
+    await this.loginSubmitBtn.click();
+  }
+
+  async clickOnEmailInput(){
+    await this.inputEmail.click();
+  }
+
+  async clickOnPasswordInput(){
+    await this.inputPassword.click();
+  }
+
+  async clickOnSubmitSignUpBtn(){
+    await this.submitSignUpBtn.click();
+  }
+
+  async enterEmail(email: string) {
+    await this.inputEmail.setValue(email);
+}
+
+  async enterPassword(password: string) {
+      await this.inputPassword.setValue(password);
+  }
+
+  async enterConfirmPasswort(password: string) {
+      await this.confirmPasswordInput.setValue(password);
+  }
+
+  async clickLoginSubmitBtn() {
+      await this.loginSubmitBtn.click();
+  }
+
+async login(email: string, password: string) {
+    await this.enterEmail(email);
+    await this.enterPassword(password);
+    await this.clickLoginSubmitBtn();
+}
 }
 
 export default new LoginPage();
