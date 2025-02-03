@@ -41,6 +41,10 @@ class DragPage extends Page {
         return $('//*[@content-desc="button-Retry"]/android.view.ViewGroup');
     }
 
+    get robotPuzzleSection(){
+        return $(`//android.view.ViewGroup[@content-desc="Drag-drop-screen"]/android.widget.ImageView`);
+      }
+
     async assertDragPiecesVisible() {
         for (let name of this.pieceNames) {
             await expect(this.dragPiece(name)).toBeDisplayed();
@@ -73,6 +77,14 @@ class DragPage extends Page {
     async dragFirstPiece() {
         await this.dragPieceToDrop(this.dragPiece(this.pieceNames[0]), this.dropPiece(this.dragPiece(this.pieceNames[0])));
     }
+
+    async performDragAndDropForAll(){
+        for (let i = 0; i < this.pieceNames.length; i++) {
+          const sourceImage = await this.dragPiece(this.pieceNames[i]);
+          const targetArea = await this.dropPiece(this.pieceNames[i]);
+          await this.dragPieceToDrop(sourceImage, targetArea);
+        }
+      }
 }
 
 export default new DragPage();

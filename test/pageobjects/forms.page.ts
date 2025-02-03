@@ -64,7 +64,7 @@ class FormsPage extends Page {
 
   get switch() {
     return $('~switch');
-}
+  }
 
   get switchText() {
       return $('~switch-text');
@@ -72,7 +72,7 @@ class FormsPage extends Page {
 
   get dropdownTitle() {
     return $('//android.widget.TextView[@text="Dropdown:"]');
-}
+  }
 
   get dropdown() {
       return $('//android.widget.EditText[@text="Select an item..."]');
@@ -114,3 +114,5 @@ class FormsPage extends Page {
       await this.activePopUpOkBtn.click();
   }
 }
+
+export default new FormsPage();

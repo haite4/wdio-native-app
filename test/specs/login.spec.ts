@@ -50,26 +50,19 @@ describe("Verify login and register functionality", () => {
         await loginPage.confirmPasswordInput.setValue(randomPassword());
         await loginPage.clickOnSubmitSignUpBtn();
         await expect(loginPage.passwordMismatchError).toBeDisplayed();
+        await loginPage.signInSwitcherTab.click();
     })
 
-    afterEach("Clear input value", async() => {
-        await loginPage.inputEmail.clearValue();
-        await loginPage.inputPassword.clearValue();
-        if(await loginPage.confirmPasswordInput.isDisplayed()){
-            await loginPage.confirmPasswordInput.clearValue();
-        }
-    })
-
-    it('TC-03 - Verify elements visibility in login tab.', async () => {
+    it('TC-03 - Verify elements visibility in login and SignUp tab.', async () => {
         await loginPage.openLoginTab();
 
         const visibleElements = [
-            loginPage.loginTitle,
-            loginPage.mooveToSignUpForm,
-            loginPage.mooveToLoginForm,
-            loginPage.emailInputField,
+            loginPage.loginSignUpTitle,
+            loginPage.signUpSwitcherTab,
+            loginPage.signInSwitcherTab,
+            loginPage.inputEmail,
             loginPage.letterIcon,
-            loginPage.passwordInputField,
+            loginPage.inputPassword,
             loginPage.lockIcon,
             loginPage.loginSubmitBtn,
         ];
@@ -78,45 +71,56 @@ describe("Verify login and register functionality", () => {
             await expect(element).toBeDisplayed();
         }
 
-        await loginPage.mooveToSignUpForm.click();
-        await expect(loginPage.confirmPasswortInputField).toBeDisplayed();
+        await loginPage.signUpSwitcherTab.click();
+        await expect(loginPage.confirmPasswordInput).toBeDisplayed();
         await expect(loginPage.secondLockIcon).toBeDisplayed();
-        await expect(loginPage.signUpButton).toBeDisplayed();
+        await expect(loginPage.submitSignUpBtn).toBeDisplayed();
         await expect(loginPage.description).not.toBeDisplayed();
     });
 
     it('TC-05 - Verify email input with invalid symbols on the Login page.', async () => {
+        await loginPage.signInSwitcherTab.click();
         await loginPage.loginBtn.click();
-        await loginPage.mooveToLoginForm.click();
-        await expect(loginPage.loginTitle).toBeDisplayed();
+        await expect(loginPage.loginSignUpTitle).toBeDisplayed();
 
         for (const email of generateInvalidEmails()) {
             await loginPage.enterEmail(email);
             await loginPage.clickLoginSubmitBtn();
-            await expect(loginPage.invalidEmailMsg).toHaveText(new RegExp(systemMsg.invalidEmail));
+            await expect(loginPage.emailInputError).toHaveText(new RegExp(systemMsg.invalidEmail));
         }
     });
 
     it('TC-07 - Sign up with valid credentials.', async () => {
+        const validPassword = randomPassword()
+
         await loginPage.loginBtn.click();
-        await loginPage.mooveToSignUpForm.click();
+        await loginPage.signUpSwitcherTab.click();
 
-        await loginPage.signUpButton.click();
-        await expect(loginPage.invalidEmailMsg).toHaveText(systemMsg.invalidEmail);
-        await expect(loginPage.invalidPasswordMsg).toHaveText(systemMsg.invalidPassword);
-        await expect(loginPage.confirmPasswordErrorMsg).toHaveText(systemMsg.confirmPasswordMismatch);
+        await loginPage.submitSignUpBtn.click();
+        await expect(loginPage.emailInputError).toHaveText(systemMsg.invalidEmail);
+        await expect(loginPage.passwordInputError).toHaveText(systemMsg.invalidPassword);
+        await expect(loginPage.passwordMismatchError).toHaveText(systemMsg.confirmPasswordMismatch);
 
-        await loginPage.emailInputField.setValue(email);
-        await loginPage.signUpButton.click();
-        await expect(loginPage.invalidEmailMsg).not.toBeDisplayed();
-        await expect(loginPage.invalidPasswordMsg).toHaveText(systemMsg.invalidPassword);
+        await loginPage.inputEmail.setValue(randomEmail);
+        await loginPage.submitSignUpBtn.click();
+        await expect(loginPage.emailInputError).not.toBeDisplayed();
+        await expect(loginPage.passwordInputError).toBeDisplayed();
 
-        await loginPage.passwordInputField.setValue(password);
-        await loginPage.signUpButton.click();
-        await expect(loginPage.invalidPasswordMsg).not.toBeDisplayed();
+        await loginPage.inputPassword.setValue(validPassword);
+        await loginPage.submitSignUpBtn.click();
+        await expect(loginPage.passwordInputError).not.toBeDisplayed();
 
-        await loginPage.confirmPasswortInputField.setValue(password);
-        await loginPage.signUpButton.click();
+        await loginPage.confirmPasswordInput.setValue(validPassword);
+        await loginPage.submitSignUpBtn.click();
         await expect(loginPage.signUpSuccessMsg).toHaveText(systemMsg.signUpSuccess);
+        await loginPage.clickOnPopUpSubmitBtn();
     });
+
+    afterEach("Clear input value", async() => {
+        await loginPage.inputEmail.clearValue();
+        await loginPage.inputPassword.clearValue();
+        if(await loginPage.confirmPasswordInput.isDisplayed()){
+            await loginPage.confirmPasswordInput.clearValue();
+        }
+    })
 })

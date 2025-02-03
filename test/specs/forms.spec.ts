@@ -1,5 +1,6 @@
 import formsPage from "../pageobjects/forms.page";
 import { faker } from "@faker-js/faker";
+import systemMsg from "../../fixtures/textSymbols/systemMsg.json"
 
 describe("Verify Forms functionality", () => {
     const randomWord = (length?: number) => {return faker.string.alpha({length: length ?? 1})};
@@ -63,11 +64,11 @@ describe("Verify Forms functionality", () => {
  it('WD_005 - Verify Form screen elements visibility.', async () => {
     await expect(formsPage.title).toBeDisplayed();
     
-    await expect(formsPage.textInputTitle).toHaveText(systemMsg.forms.inputFieldTitle);
-    await expect(formsPage.textInput).toBeDisplayed();
-    await expect(formsPage.textInput).toHaveText(systemMsg.forms.defaultInputText);
+    await expect(formsPage.inputFieldTitle).toHaveText(systemMsg.forms.inputFieldTitle);
+    await expect(formsPage.firstInputField).toBeDisplayed();
+    await expect(formsPage.firstInputField).toHaveText(systemMsg.forms.defaultInputText);
 
-    await expect(formsPage.textInputResultTitle).toHaveText(systemMsg.forms.typedTextTitle);
+    await expect(formsPage.youHaveTypedTitle).toHaveText(systemMsg.forms.typedTextTitle);
 
     await expect(formsPage.switch).toBeDisplayed();
     await expect(formsPage.switchText).toHaveText(systemMsg.forms.switchTextOn);
@@ -78,7 +79,7 @@ describe("Verify Forms functionality", () => {
     await expect(formsPage.arrowIcon).toBeDisplayed();
     
     await expect(formsPage.activeBtn).toBeDisplayed();
-    await expect(formsPage.invactiveBtn).toBeDisplayed();
+    await expect(formsPage.inactiveBtn).toBeDisplayed();
 });
 
 it('WD_007 - Verify Toggle functionality.', async () => {

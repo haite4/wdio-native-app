@@ -68,6 +68,10 @@ export default class Page {
     await this.backToHomeIcon.click();
   }
 
+  async openHomeTab() {
+    await this.homeBtn.click();
+  }
+  
   async swipe(startPercentageX: number, startPercentageY: number, endPercentageX: number, endPercentageY: number, speed: number){
     const { width, height } = await driver.getWindowRect();
 

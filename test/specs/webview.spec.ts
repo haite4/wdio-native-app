@@ -2,12 +2,20 @@ import webviewPage from "../pageobjects/webview.page";
 import { webviewTabBtn } from "../../constants/btnDescContent";
 import { UrlPaths } from "../../constants/urlPaths";
 import swipePage from "../pageobjects/swipe.page";
+import systemMsg from "../../fixtures/textSymbols/systemMsg.json";
+import webviePage from "../pageobjects/webview.page";
 
 describe("Verify functionality of webview page", () => {
 
     beforeEach("Open webviewTab", async () => {
+        await driver.reloadSession();
         await webviewPage.openWebvieTab();
     })
+
+    it('TC-09 - Verify functionality of the helper modal in Webview tab.', async () => {
+        await webviePage.scrollToText(systemMsg.copyrightText);
+        await expect(webviePage.cornerRobotIcon).toBeEnabled();
+    });
 
     it("TC-02 Verify buttons functionality  in webdriverview tab.", async () => {
         await swipePage.waitForElement(swipePage.loadingElement, true);

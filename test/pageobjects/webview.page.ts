@@ -26,6 +26,10 @@ class WebviewPage extends Page {
     return $(`//android.view.ViewGroup[@content-desc="Subscribe to WebdriverIO."]`);
   }
 
+  get cornerRobotIcon() {
+    return $('//*[@text="WebdriverIO AI Copilot"]');
+}
+
   getBtnByContentDescName(desc: string) {
       return $(`//android.view.View[@content-desc="${desc}"]`);
   }

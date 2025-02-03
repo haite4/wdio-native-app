@@ -1,5 +1,5 @@
 import homePage from "../pageobjects/home.page";
-import webviePage from "../pageobjects/webvie.page";
+import webviePage from "../pageobjects/webview.page";
 import loginPage from "../pageobjects/login.page";
 import formsPage from "../pageobjects/forms.page";
 import swipePage from "../pageobjects/swipe.page";
@@ -37,16 +37,16 @@ describe("Verify functionality of home page", () => {
   it('WD_004 - Check main navigation menu functionality.', async () => {
       await webviePage.openWebvieTab();
 
-      await expect(webviePage.robotIcon).toBeDisplayed();
+      await expect(webviePage.robotImage).toBeDisplayed();
 
       await homePage.openLoginTab();
-      await expect(loginPage.emailInputField).toBeDisplayed();
+      await expect(loginPage.inputEmail).toBeDisplayed();
 
       await homePage.openFormsTab();
-      await expect(formsPage.textInput).toBeDisplayed();
+      await expect(formsPage.firstInputField).toBeDisplayed();
 
       await homePage.openSwipeTab();
-      await expect(swipePage.swipePageTitle).toBeDisplayed();
+      await expect(swipePage.swipeHorizontalTitle).toBeDisplayed();
 
       await homePage.openDragTab();
       await expect(dragPage.refreshBtn).toBeDisplayed();
@@ -54,5 +54,4 @@ describe("Verify functionality of home page", () => {
       await homePage.openHomeTab();
       await expect(homePage.orangeRobot).toBeDisplayed();
   });
-  
 });

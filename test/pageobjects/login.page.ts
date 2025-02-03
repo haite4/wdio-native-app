@@ -62,7 +62,7 @@ class LoginPage extends Page {
 
   get loginSuccessMsg() {
     return $('//android.widget.TextView[@text="You are logged in!"]') ;
-}
+  }
 
   get signUpSuccessMsg() {
     return $('//*[@resource-id="android:id/message"]');
@@ -70,7 +70,7 @@ class LoginPage extends Page {
 
   get signInSwitcherTab() {
     return $('(//android.widget.TextView[@text="Login"])[1]');
-}
+  }
 
   get letterIcon() {
     return $('//android.widget.TextView[@text="󰇰"]');
@@ -82,7 +82,7 @@ class LoginPage extends Page {
 
   get secondLockIcon() {
     return $('(//android.widget.TextView[@text="󰍁"])[2]');
-}
+  }
 
   get description() {
     return $('//*[contains(@text, "When the device has Touch/FaceID (iOS)")]');
@@ -111,7 +111,7 @@ class LoginPage extends Page {
 
   async enterEmail(email: string) {
     await this.inputEmail.setValue(email);
-}
+  }
 
   async enterPassword(password: string) {
       await this.inputPassword.setValue(password);
@@ -125,11 +125,11 @@ class LoginPage extends Page {
       await this.loginSubmitBtn.click();
   }
 
-async login(email: string, password: string) {
-    await this.enterEmail(email);
-    await this.enterPassword(password);
-    await this.clickLoginSubmitBtn();
-}
+  async login(email: string, password: string) {
+      await this.enterEmail(email);
+      await this.enterPassword(password);
+      await this.clickLoginSubmitBtn();
+  }
 }
 
 export default new LoginPage();
